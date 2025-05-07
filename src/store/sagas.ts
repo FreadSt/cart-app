@@ -1,5 +1,4 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import { addToCart } from './cartSlice';
+import { takeEvery } from 'redux-saga/effects';
 
 // Обработчик добавления товара в корзину
 function* handleAddToCart(action: any) {
@@ -9,8 +8,6 @@ function* handleAddToCart(action: any) {
 		return;
 	}
 	yield console.log('Adding item to cart:', payload);
-	// put(addToCart(payload)) не используется, так как редьюсер уже обрабатывает действие
-	// call не используется, так как нет асинхронных вызовов на данном этапе
 }
 
 // Корневая сага
