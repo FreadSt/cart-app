@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { addToCart, CartState, Product } from './store/cartSlice';
 import CartItem from './CartItem';
-import {mockApi} from "./mockApi";
+import { mockApi } from './mockApi';
 
 // Типы для стейта
 export interface RootState {
@@ -86,10 +86,18 @@ const App: React.FC = () => {
 
   // Обработчик изменения количества
   const handleQuantityChange = useCallback((productId: number, value: number) => {
-    setQuantities((prev) => ({
-      ...prev,
-      [productId]: Math.max(1, value),
-    }));
+    if (value > 200) {
+      alert('200 is the maximum limit for quantity.');
+      setQuantities((prev) => ({
+        ...prev,
+        [productId]: 1, // Сбрасываем к исходному значению (1)
+      }));
+    } else {
+      setQuantities((prev) => ({
+        ...prev,
+        [productId]: Math.max(1, value),
+      }));
+    }
   }, []);
 
   // Обработчик добавления в корзину
@@ -130,7 +138,7 @@ const App: React.FC = () => {
     ));
   }, [products, quantities, handleQuantityChange, handleAddToCart]);
 
-  // Мемоизированный список элементов корзины
+  // Список элементов корзины
   const cartElements = useMemo(() => {
     return cartItems.length === 0 ? (
       <p>Cart is empty</p>

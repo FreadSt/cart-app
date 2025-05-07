@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeFromCart, updateQuantity, CartItem as CartItemType } from './store/cartSlice';
 import { RootState } from './App';
 
-// Стили для элемента корзины
 const CartItemContainer = styled.div`
   padding: 10px;
   margin: 5px 0;
